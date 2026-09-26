@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 压缩包（不进版本库）
+*.zip
+*.rar
+*.7z
+
+# 临时文件
+*.tmp
+*.bak
+*.log

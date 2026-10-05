@@ -1191,27 +1191,37 @@ secedit /export /cfg %TEMP%\sec.cfg /areas SECURITY_OPTIONS
 
 | 类别 | 端口 | 说明 |
 | --- | --- | --- |
-| 必须禁用 | 135、137、138、139、445、3389、53、23333 | 防跳板攻击 |
+| 必须禁用 | 135、137、138、139、445、3389、53 | 防跳板攻击 |
+| 仅限来源访问 | 23333 | 本项目约定的远程管理端口，**不封禁**，改由 Allow 规则限定来源为堡垒机 |
 | 原则上禁用 | 23（telnet）、25（SMTP）、20、21（ftp）、513（login）、110（e-mail）、1900（UPnP） | 按业务实际判断 |
 
-> `23333` 为本项目约定的远程管理端口。**注意 Linux B24 原表将其误写为 `5323333`**，正确值为 `23333`，见第七节。
+> `23333` 为本项目约定的远程管理端口，**必须保留可用**——原表同时写"禁用 23333"和"仅允许堡垒机访问 23333"，二者矛盾，此处以"仅允许堡垒机访问"为准（见下方"特殊情况处理"）。**注意 Linux B24 原表将其误写为 `5323333`**，正确值为 `23333`，见第七节。
 
 **3. 入站规则（限制管理端口来源）**
 
+> ⚠️ **不要为 23333 添加 `-RemoteAddress Any` 的 Block 规则**。Windows 防火墙中 **Block 规则的优先级恒高于 Allow 规则，与规则顺序、特异性无关**：一旦存在匹配的 Block 规则，Allow 规则永远不生效。`Allow 堡垒机` + `Block Any` 的组合会让堡垒机**也**连不上，等于把 23333 彻底封死。
+>
+> 正确做法：入站默认动作本就是 **Block**，只需添加"允许堡垒机"这一条 Allow 规则即可实现"仅允许堡垒机访问"，**不需要**再补一条 Block 规则。
+
 ```powershell
-# 允许管理端口仅来自堡垒机
+# 唯一需要的规则：允许堡垒机访问管理端口（其余来源由默认入站 Block 拒绝）
 New-NetFirewallRule -DisplayName "23333-Only-Bastion" -Direction Inbound -Protocol TCP -LocalPort 23333 `
   -RemoteAddress <堡垒机IP> -Action Allow -Profile Any
+```
 
-# 明确阻断其余来源
-New-NetFirewallRule -DisplayName "23333-Deny-Other" -Direction Inbound -Protocol TCP -LocalPort 23333 `
-  -RemoteAddress Any -Action Block -Profile Any
+若上级要求**显式**列出阻断规则（便于审计），则必须按"除堡垒机外的具体网段"逐条添加，**不得使用 `Any`**：
+
+```powershell
+# 显式阻断已知非授权网段（示例，网段按现场实际填写）
+New-NetFirewallRule -DisplayName "23333-Deny-Subnet-A" -Direction Inbound -Protocol TCP -LocalPort 23333 `
+  -RemoteAddress <非授权网段A> -Action Block -Profile Any
 ```
 
 **必须禁用端口（示例规则集）**：
 
 ```powershell
-$block = 135,137,138,139,445,3389,53,23333
+# 注意：不含 23333。该端口由上面的 Allow 规则单独管控，不能在此封禁
+$block = 135,137,138,139,445,3389,53
 foreach ($p in $block) {
   New-NetFirewallRule -DisplayName "Block-TCP-$p" -Direction Inbound -Protocol TCP -LocalPort $p -Action Block
   New-NetFirewallRule -DisplayName "Block-UDP-$p" -Direction Inbound -Protocol UDP -LocalPort $p -Action Block
@@ -1224,10 +1234,10 @@ foreach ($p in $block) {
 
 #### 特殊情况处理
 
-- **"仅允许堡垒机访问"与"禁用该端口"存在冲突**：原表同时要求"仅允许堡垒机访问 23333"和"禁用 23333"。**实践取法：禁用端口的入站访问，仅保留来自堡垒机 IP 的例外**（见上方两条规则），二者不冲突；
+- **"仅允许堡垒机访问"与"禁用该端口"存在冲突**：原表同时要求"仅允许堡垒机访问 23333"和"禁用 23333"。**本文件取法：以"仅允许堡垒机访问"为准**——保留 23333 可用，用单条 Allow 规则限定来源为堡垒机，其余来源由入站默认 Block 拒绝（见上方规则），二者不再冲突；
 - 禁用 53（DNS）会破坏主机名解析，**除非该主机确实无需 DNS**（纯静态 IP 且不使用域名），否则不可禁；
 - 禁用 3389 会切断远程桌面，须确认无 RDP 运维依赖——**本项目远程管理约定走 23333 + 堡垒机**；
-- **防火墙规则顺序**：Block 规则需在 Allow 规则**之前**生效，或用更精确的 `RemoteAddress` 限定 Allow；
+- **防火墙规则优先级**：Windows 防火墙中 **Block 规则优先级恒高于 Allow 规则**，调整规则顺序或让 Allow 更精确都**不能**让 Allow 覆盖 Block。因此"允许堡垒机"只能靠**入站默认 Block + 单条 Allow** 实现；若已误建 `Block 23333 Any` 规则，必须先删除该规则，否则堡垒机无法接入；
 - 禁用规则须在变更窗口执行，并保留回滚方式（组策略"另存为"策略备份）。
 
 #### 📌 加固后的验证

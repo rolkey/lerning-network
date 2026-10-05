@@ -1678,49 +1678,88 @@ ip route del default via <网关IP> dev eth0
 
 **3. 配置明细路由（掩码 ≥24 位）**
 
+> ⚠️ **先确认发行版再选方法**。`/etc/sysconfig/*` 属于 **RHEL / CentOS / 凝思 Linx** 家族；**Ubuntu / Debian 没有 `/etc/sysconfig` 目录**，照抄 RHEL 的路径不会生效，必须用下面的 netplan 或 `/etc/network/interfaces`。
+
+**RHEL / CentOS / 凝思 Linx 系**（`/etc/sysconfig` 家族）：
+
 ```bash
-# 方法 1：/etc/rc.local（临时，重启生效）
+# 方法 1：命令行临时添加（重启即失效，仅用于验证）
 route add -net 10.67.x.0/24 dev eth0
 route add -net 10.67.x.0/24 gw 10.67.1.1
 
-# 方法 2：/etc/sysconfig/network 末尾
-GATEWAY=gw-ip    # 或 GATEWAY=gw-dev
-
-# 方法 3：/etc/sysconfig/static-routes（推荐，不与 GATEWAY 冲突）
+# 方法 2：/etc/sysconfig/static-routes（推荐持久化，不与 GATEWAY 冲突）
 echo "any net 10.67.x.0/24 gw 10.67.1.1" >> /etc/sysconfig/static-routes
+
+# 方法 3：/etc/sysconfig/network 末尾设 GATEWAY
+# ⚠️ 会产生默认路由，与"禁止默认路由"冲突，仅在无其他要求时使用
+GATEWAY=gw-ip
 ```
 
-Ubuntu / Debian 的路由保存路径：`/etc/sysconfig` 下的 `static-routes`，文件不存在时可同时创建。
+**Ubuntu / Debian 系（无 /etc/sysconfig，必须用 netplan 或 interfaces）**：
 
-**CentOS 7 系（NetworkManager）**：
+```bash
+# 方法 A：netplan（Ubuntu 18.04+ 首选）——编辑 /etc/netplan/01-eth0.yaml
+#   network:
+#     version: 2
+#     ethernets:
+#       eth0:
+#         addresses:
+#           - 10.67.x.10/24
+#         routes:                          # 明细路由
+#           - to: 10.67.x.0/24
+#             via: 10.67.1.1
+#         # 注意：不配置 gateway4，即不产生默认路由
+netplan try      # 校验语法，失败自动回滚
+netplan apply    # 生效；失败用 netplan revert 回滚
+```
+
+```bash
+# 方法 B：/etc/network/interfaces（ifupdown 管理的系统）
+#   auto eth0
+#   iface eth0 inet static
+#       address 10.67.x.10/24
+#       up route add -net 10.67.x.0/24 gw 10.67.1.1 dev eth0
+#       # 不写 gateway 关键字即不产生默认路由
+ifdown eth0 && ifup eth0    # 生效；远程操作建议先开一个保持连接
+```
+
+**NetworkManager 通用（RHEL 8+/CentOS 7+/Ubuntu 桌面版均可）**：
 
 ```bash
 nmcli connection show eth0
 nmcli connection modify eth0 +ipv4.routes "10.67.x.0/24 10.67.1.1"
-nmcli connection up eth0
-
 nmcli connection modify eth0 ipv4.never-default yes   # 不使用默认路由
+nmcli connection up eth0
 ```
 
-**4. 保存配置**
+> 💡 `ipv4.never-default yes` 是"禁止默认路由"在 NetworkManager 下的正确表达，比注释掉 `GATEWAY=` 更可靠；netplan 则是**完全不写 `gateway4`**。
 
-```bash
-# /etc/rc.local 方式须确保可执行
-chmod +x /etc/rc.local
-# CentOS 7 须确认 rc-local 服务启用
-systemctl enable rc-local
-```
+**4. 保存配置（持久化）**
+
+路由持久化**已由上一步的配置文件负责**，改完配置文件即已持久化，重启自动加载，无需额外操作：
+
+| 发行版 | 持久化文件 | 生效方式 |
+| --- | --- | --- |
+| RHEL / CentOS / 凝思 Linx | `/etc/sysconfig/static-routes` | `systemctl restart network` |
+| Ubuntu 18.04+（netplan） | `/etc/netplan/*.yaml` | `netplan apply`（先用 `netplan try` 校验） |
+| Ubuntu / Debian（ifupdown） | `/etc/network/interfaces` | `ifdown eth0 && ifup eth0` |
+| NetworkManager | `nmcli connection` | `nmcli connection up eth0` |
+
+> ⚠️ **`/etc/rc.local` 仅是 RHEL 家族的遗留兜底方式，且已被 systemd 标记为 deprecated**：RHEL 7 须 `chmod +x /etc/rc.local` 并 `systemctl enable rc-local`，Ubuntu 默认不执行该文件。**加固文档不应把 rc.local 作为路由持久化的推荐手段**，此处仅在无上述配置文件能力时参考。
+>
+> ⚠️ **远程操作注意**：删除默认路由、`ifdown/ifup` 断网卡、netplan 改错配置都会立即断开会话。**必须先开一个 SSH 会话保持连接，或在带外/console 上操作**，并优先用 `netplan try` 这类会自动回滚的方式。
 
 #### 特殊情况处理
 
 - **删除默认路由会中断本机对外访问**（DNS、NTP、补丁源、态势感知上报），**须先确认明细路由齐备再删，删后立即验证**；
 - **`route add` 是临时的**，重启即失效——**原表特别强调"路由记得保存，不然重启会丢失"**；
 - **`GATEWAY=` 只能有一条**，配了 `GATEWAY=` 即等于有默认网关，与"禁止默认路由"冲突。**要精确控制可达范围就用 `static-routes` 或 nmcli routes，不要用 `GATEWAY=`**；
-- **删除 `GATEWAY=` 行**（原文做法）：
+- **删除 `GATEWAY=` 行**（原文做法，**仅适用于 RHEL / CentOS / 凝思 Linx**）：
   ```bash
   vi /etc/sysconfig/network-scripts/ifcfg-eth0
   # 在 GATEWAY=xxxx 行前加 # 注释该行，wq 保存
-  service network restart
+  # Ubuntu/Debian 无此文件：netplan 删掉 gateway4，ifupdown 删掉 gateway 关键字
+  systemctl restart network        # CentOS 7 用 service network restart
   ```
 - **与 Windows A28 的差异**：Linux 要求掩码 **≥24 位**并显式配置 `10.67.x.0` 明细路由；Windows 为 **≥16 位**。**填表时不要互相套用**；
 - 删除默认路由后若 DHCP 下发网关，会重新出现默认路由——须改为静态配置。
@@ -1728,21 +1767,30 @@ systemctl enable rc-local
 #### 📌 加固后的验证
 
 ```bash
-# 1. samba 已卸载
-rpm -qa | grep samba             # 应无输出
-netstat -tlnp | grep -E ":(139|445)\b"   # 应无输出
+# 1. samba 已卸载（按发行版二选一）
+rpm -qa | grep -Ei "samba|smbfs"          # RHEL/CentOS/凝思：应无输出
+dpkg -l | grep -Ei "samba|smbfs|smbd"     # Ubuntu/Debian：应无输出
+# 端口无监听（通用，两种发行版均可用；ss 优先，netstat 兼容老系统）
+ss -lntup | grep -E ":(139|445)\b" && echo "仍存在监听，需处理" || echo "139/445 无监听：OK"
+netstat -tlnp 2>/dev/null | grep -E ":(139|445)\b"   # 老系统兜底
 
 # 2. 无默认路由
-ip route show | grep -E "^default"       # 应无输出
+ip route show | grep -E "^default" && echo "仍存在默认路由，需处理" || echo "无默认路由：OK"
 
 # 3. 明细路由掩码 ≥24 位
-ip route show | grep -E "10\.67\..*/24"  # 应存在且掩码为 /24
+ip route show | grep -E "^10\.67\..*/(2[4-9]|3[0-2]) "   # 应存在且掩码 ≥/24
 
-# 4. 重启后复查（关键）
+# 4. 持久化配置已生效（核对与实际生效路由一致）
+grep -vE "^\s*#|^\s*$" /etc/sysconfig/static-routes 2>/dev/null   # RHEL/CentOS/凝思
+grep -A5 "routes:" /etc/netplan/*.yaml 2>/dev/null                # Ubuntu netplan
+
+# 5. 重启后复查（关键，原表强调"路由记得保存，不然重启会丢失"）
 reboot && ip route show
 ```
 
-期望结果：samba 已卸载；无默认路由；`10.67.x.0/24` 明细路由存在且重启后保持。
+期望结果：samba 已卸载且 139/445 无监听；**无默认路由**；`10.67.x.0/24` 明细路由掩码 ≥/24 且**重启后仍然存在**；持久化配置文件中的条目与实际生效路由一致。
+
+> ⚠️ 远程主机执行第 5 步前，先确认第 3、4 步均已通过。删除默认路由后若明细路由有遗漏，主机会立即失联且**无法自救**，须在带外/console 或保留的 SSH 会话中操作。
 
 ## 四、漏洞处置清单（14 条）
 

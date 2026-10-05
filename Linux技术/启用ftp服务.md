@@ -135,5 +135,3 @@ ufw allow 40000:50000/tcp
 2. **改完 PAM 后要 stop + start**，`restart` 不一定能让 PAM 会话重新初始化。
 3. **Debian 12 没有 `/var/log/auth.log`**，用 `journalctl` 或 `/var/log/vsftpd.log`。
 4. **`allow_writeable_chroot=YES` 是必须的**，否则 chroot 到家目录且可写时会报 500 OOPS。
-
-要不要我把这份文档也顺便加上"如果希望保留 pam_shells 但只放行特定用户"的进阶配置？

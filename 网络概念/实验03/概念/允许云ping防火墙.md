@@ -11,8 +11,8 @@
 [USG6000V1-policy-security] rule name cloud_ping_fw
 [USG6000V1-policy-security-rule-cloud_ping_fw] source-zone untrust
 [USG6000V1-policy-security-rule-cloud_ping_fw] destination-zone local
-[USG6000V1-policy-security-rule-cloud_ping_fw] source-address 10.1.23.2 mask 255.255.255.255
-[USG6000V1-policy-security-rule-cloud_ping_fw] destination-address 10.1.23.1 mask 255.255.255.255
+[USG6000V1-policy-security-rule-cloud_ping_fw] source-address 192.168.1.2 mask 255.255.255.255
+[USG6000V1-policy-security-rule-cloud_ping_fw] destination-address 192.168.1.1 mask 255.255.255.255
 [USG6000V1-policy-security-rule-cloud_ping_fw] service icmp
 [USG6000V1-policy-security-rule-cloud_ping_fw] action permit
 [USG6000V1-policy-security-rule-cloud_ping_fw] quit

@@ -44,18 +44,6 @@
                 <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
             </slot>
         </dev>
-        <dev id="752FED02-6AC0-4c16-B812-23D2BEE8295E" name="FW1" poe="0" model="USG6000V" settings="" system_mac="00-E0-FC-7C-39-0E" com_port="2000" bootmode="0" cx="247.000000" cy="240.000000" edit_left="274" edit_top="294">
-            <slot id="1">
-                <interface category="Ethernet" type="GE" slotIndex="0" cardIndex="0" interfaceIndex="0" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="0" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="1" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="2" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="3" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="4" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="5" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="6" />
-            </slot>
-        </dev>
         <dev id="97B986B6-D6C3-453e-A330-7BA788D4D320" name="Integer 100.1.1.1" poe="0" model="AR2220" settings="" system_mac="00-E0-FC-FD-33-3B" com_port="2001" bootmode="0" cx="247.000000" cy="63.000000" edit_left="301" edit_top="111">
             <slot number="slot17" isMainBoard="1">
                 <interface sztype="Ethernet" interfacename="GE" count="1" />
@@ -75,6 +63,18 @@
         <dev id="6C22EE9D-B46D-4544-AF4B-560F8760C0C9" name="¶þ²ãSW3£º192.168.88.3" poe="0" model="S5700" settings="" system_mac="4C-1F-CC-D7-69-BF" com_port="2004" bootmode="0" cx="515.000000" cy="602.000000" edit_left="464" edit_top="649">
             <slot number="slot17" isMainBoard="1">
                 <interface sztype="Ethernet" interfacename="GE" count="24" />
+            </slot>
+        </dev>
+        <dev id="752FED02-6AC0-4c16-B812-23D2BEE8295E" name="FW1" poe="0" model="USG6000V" settings="" system_mac="00-E0-FC-7C-39-0E" com_port="2000" bootmode="0" cx="247.000000" cy="240.000000" edit_left="274" edit_top="294">
+            <slot id="1">
+                <interface category="Ethernet" type="GE" slotIndex="0" cardIndex="0" interfaceIndex="0" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="0" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="1" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="2" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="3" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="4" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="5" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="6" />
             </slot>
         </dev>
     </devices>

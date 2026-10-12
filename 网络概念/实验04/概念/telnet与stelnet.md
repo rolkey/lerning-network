@@ -35,19 +35,42 @@ user-interface vty 0 4
 
 # 4. 配置 AAA 用户，服务类型要包含 ssh
 aaa
- local-user admin password cipher 你的密码
- local-user admin privilege level 15
- local-user admin service-type ssh
+ local-user sshuser password cipher 你的密码
+ local-user sshuser privilege level 15
+ local-user sshuser service-type ssh
  quit
 
 # 5. 配置用户的 SSH 登录方式
-ssh user admin authentication-type password
-ssh user admin service-type stelnet
+ssh user sshuser authentication-type password
+ssh user sshuser service-type stelnet
 
 # 6. 在端口上开放服务
 interface GigabitEthernet0/0/0
  undo shutdown
  service-manage ssh permit
+```
+
+### 交换机与防火墙创建用户不一样
+
+- 交换机命令
+
+```
+aaa
+ local-user sshuser password cipher 你的密码
+ local-user sshuser privilege level 15
+ local-user sshuser service-type ssh
+```
+
+- 防火墙命令
+
+```
+[USG6000V1] aaa
+[USG6000V1-aaa] manager-user your_username
+[USG6000V1-aaa-manager-user-your_username] password cipher your_password
+[USG6000V1-aaa-manager-user-your_username] service-type ssh
+[USG6000V1-aaa-manager-user-your_username] level 3
+[USG6000V1-aaa-manager-user-your_username] quit
+[USG6000V1-aaa] bind manager-user your_username role system-admin
 ```
 
 ### 关键区别

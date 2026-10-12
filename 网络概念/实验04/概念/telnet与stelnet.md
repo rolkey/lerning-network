@@ -43,6 +43,11 @@ aaa
 # 5. 配置用户的 SSH 登录方式
 ssh user admin authentication-type password
 ssh user admin service-type stelnet
+
+# 6. 在端口上开放服务
+interface GigabitEthernet0/0/0
+ undo shutdown
+ service-manage ssh permit
 ```
 
 ### 关键区别

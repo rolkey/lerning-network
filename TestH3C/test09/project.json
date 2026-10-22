@@ -1,0 +1,39 @@
+{
+ "projectInfo": {
+  "name": "hcl_yswbrqcb",
+  "path": "hcl_yswbrqcb",
+  "visibility": "2",
+  "introduction": "",
+  "label": []
+ },
+ "deviceInfoList": [
+  {
+   "resourceName": "Host_1",
+   "resourceCategory": "终端",
+   "resourceModel": "Host",
+   "resourceVersion": "",
+   "configPath": ""
+  },
+  {
+   "resourceName": "Host_2",
+   "resourceCategory": "终端",
+   "resourceModel": "Host",
+   "resourceVersion": "",
+   "configPath": ""
+  },
+  {
+   "resourceName": "Host_3",
+   "resourceCategory": "终端",
+   "resourceModel": "Host",
+   "resourceVersion": "",
+   "configPath": ""
+  },
+  {
+   "resourceName": "S5820V2-54QS-GE_1",
+   "resourceCategory": "交换机",
+   "resourceModel": "S5820V2-54QS-GE",
+   "resourceVersion": "CMW7.1.075-A7571",
+   "configPath": "DeviceConfig\\S5820V2-54QS-GE_1.cfg"
+  }
+ ]
+}

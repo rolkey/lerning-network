@@ -1,0 +1,35 @@
+version = 5.5.0
+[vbox 127.0.0.1:16600]
+    workingdir = c:\users\rolkey.desktop-tgicn02\hcl\projects\hcl_yswbrqcb\working
+    udp = 10000
+    [[S5820V2-54QS-GE S5820V2-54QS-GE_1]]
+        device_id = 1
+        bridge_mac = 5c-04-c8-8c-01-00
+        slot0 = S5800 384
+        GE_0/10 = NIC:VirtualBox Host-Only Ethernet Adapter #3
+        GE_0/24 = NIC:VirtualBox Host-Only Ethernet Adapter #2
+        GE_0/1 = NIC:VirtualBox Host-Only Ethernet Adapter #4
+        x = -642.7573529411766
+        y = -456.3897058823528
+        z = 5.0
+[Non-vBox-DATA]
+    m11 = 1.5999999999999999
+    m22 = 1.5999999999999999
+    [[Cloud Host_3]]
+        symbol = Host
+        NIC:VirtualBox Host-Only Ethernet Adapter #4_0 = S5820V2-54QS-GE_1 GE_0/1
+        x = -645.294117647059
+        y = -205.35093582887703
+        z = 5.0
+    [[Cloud Host_2]]
+        symbol = Host
+        NIC:VirtualBox Host-Only Ethernet Adapter #3_0 = S5820V2-54QS-GE_1 GE_0/10
+        x = -44.31483957219257
+        y = -455.56149732620315
+        z = 5.0
+    [[Cloud Host_1]]
+        symbol = Host
+        NIC:VirtualBox Host-Only Ethernet Adapter #2_0 = S5820V2-54QS-GE_1 GE_0/24
+        x = -638.3455882352941
+        y = -679.7058823529412
+        z = 5.0

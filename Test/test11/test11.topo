@@ -30,6 +30,20 @@
                 <interface sztype="Ethernet" interfacename="GE" count="24" />
             </slot>
         </dev>
+        <dev id="C3EEA90A-3E60-48df-B86A-CAB0478FE429" name="SW2" poe="0" model="S5700" settings="" system_mac="4C-1F-CC-A5-3D-82" com_port="2003" bootmode="0" cx="297.000000" cy="551.000000" edit_left="324" edit_top="605">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="GE" count="24" />
+            </slot>
+        </dev>
+        <dev id="5398F27E-2E7F-4d41-8618-382C30C7D89A" name="Cloud2" poe="0" model="Cloud" settings="" system_mac="" com_port="0" bootmode="0" cx="408.500000" cy="213.500000" edit_left="451" edit_top="298">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="0" />
+                <interface sztype="Ethernet" interfacename="GE" count="2" />
+                <interface sztype="Serial" interfacename="Serial" count="0" />
+                <interfaceMap sztype="Ethernet" interfacename="GE" displayNo="1" remoteDisplayNo="2" adapterUid="" isOpen="0" udpPort="0" peerIPAdd="0.0.0.0" peerIP="0" peerPort="0" />
+                <interfaceMap sztype="Ethernet" interfacename="GE" displayNo="2" remoteDisplayNo="1" adapterUid="\Device\NPF_{F653473A-C16D-43D2-A18E-29F770A0EB6A}" isOpen="1" udpPort="0" peerIPAdd="0.0.0.0" peerIP="0" peerPort="0" />
+            </slot>
+        </dev>
         <dev id="BEE7F542-38E3-47ea-B229-FE0C1BD59C5D" name="FW1" poe="0" model="USG6000V" settings="" system_mac="00-E0-FC-AA-48-40" com_port="2000" bootmode="0" cx="185.000000" cy="229.000000" edit_left="212" edit_top="283">
             <slot id="1">
                 <interface category="Ethernet" type="GE" slotIndex="0" cardIndex="0" interfaceIndex="0" />
@@ -40,11 +54,6 @@
                 <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="4" />
                 <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="5" />
                 <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="6" />
-            </slot>
-        </dev>
-        <dev id="C3EEA90A-3E60-48df-B86A-CAB0478FE429" name="SW2" poe="0" model="S5700" settings="" system_mac="4C-1F-CC-A5-3D-82" com_port="2003" bootmode="0" cx="297.000000" cy="551.000000" edit_left="324" edit_top="605">
-            <slot number="slot17" isMainBoard="1">
-                <interface sztype="Ethernet" interfacename="GE" count="24" />
             </slot>
         </dev>
     </devices>
@@ -66,6 +75,9 @@
         </line>
         <line srcDeviceID="C3EEA90A-3E60-48df-B86A-CAB0478FE429" destDeviceID="1C5E6490-A859-4454-9EC2-D609B0549C9F">
             <interfacePair lineName="Copper" srcIndex="2" srcBoundRectIsMoved="0" srcBoundRect_X="324.863495" srcBoundRect_Y="621.175110" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="0" tarBoundRect_X="326.136505" tarBoundRect_Y="684.824890" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
+        </line>
+        <line srcDeviceID="BEE7F542-38E3-47ea-B229-FE0C1BD59C5D" destDeviceID="5398F27E-2E7F-4d41-8618-382C30C7D89A">
+            <interfacePair lineName="Copper" srcIndex="0" srcBoundRectIsMoved="0" srcBoundRect_X="255.183762" srcBoundRect_Y="256.000000" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="0" tarBoundRect_X="386.603027" tarBoundRect_Y="256.000000" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
         </line>
     </lines>
     <shapes />

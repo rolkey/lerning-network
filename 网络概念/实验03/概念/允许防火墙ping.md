@@ -23,6 +23,15 @@
 [USG6000V1-zone-untrust] quit
 ```
 
+备用：移除接口
+
+```plaintext
+[USG6000V1] firewall zone untrust
+[USG6000V1-zone-untrust] undo add interface GigabitEthernet1/0/0
+[USG6000V1-zone-untrust] quit
+```
+
+
 然后调整安全策略，让防火墙**主动** ping 云（Local -> Untrust 方向），而不是反过来：
 
 ```plaintext

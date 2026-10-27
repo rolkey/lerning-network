@@ -10,6 +10,7 @@ desktop.ini
 .idea/
 *.swp
 *.swo
+*.efz
 *~
 
 # 压缩包（不进版本库）

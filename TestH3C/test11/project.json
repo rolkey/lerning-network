@@ -1,0 +1,74 @@
+{
+ "projectInfo": {
+  "name": "test11",
+  "path": "test11",
+  "visibility": "2",
+  "introduction": "",
+  "label": []
+ },
+ "deviceInfoList": [
+  {
+   "resourceName": "Host_3",
+   "resourceCategory": "终端",
+   "resourceModel": "Host",
+   "resourceVersion": "",
+   "configPath": ""
+  },
+  {
+   "resourceName": "Host_2",
+   "resourceCategory": "终端",
+   "resourceModel": "Host",
+   "resourceVersion": "",
+   "configPath": ""
+  },
+  {
+   "resourceName": "Host_1",
+   "resourceCategory": "终端",
+   "resourceModel": "Host",
+   "resourceVersion": "",
+   "configPath": ""
+  },
+  {
+   "resourceName": "PC_5",
+   "resourceCategory": "终端",
+   "resourceModel": "PC",
+   "resourceVersion": "",
+   "configPath": "DeviceConfig\\PC_5.cfg"
+  },
+  {
+   "resourceName": "PC_6",
+   "resourceCategory": "终端",
+   "resourceModel": "PC",
+   "resourceVersion": "",
+   "configPath": "DeviceConfig\\PC_6.cfg"
+  },
+  {
+   "resourceName": "SW1",
+   "resourceCategory": "交换机",
+   "resourceModel": "S6850",
+   "resourceVersion": "CMW7.1.070-A7170",
+   "configPath": "DeviceConfig\\SW1.cfg"
+  },
+  {
+   "resourceName": "SW0",
+   "resourceCategory": "交换机",
+   "resourceModel": "S5820V2-54QS-GE",
+   "resourceVersion": "CMW7.1.075-A7571",
+   "configPath": "DeviceConfig\\SW0.cfg"
+  },
+  {
+   "resourceName": "SW2",
+   "resourceCategory": "交换机",
+   "resourceModel": "S6850",
+   "resourceVersion": "CMW7.1.070-A7170",
+   "configPath": "DeviceConfig\\SW2.cfg"
+  },
+  {
+   "resourceName": "FW1",
+   "resourceCategory": "安全",
+   "resourceModel": "F1060",
+   "resourceVersion": "CMW7.1.064-A7164",
+   "configPath": "DeviceConfig\\FW1.cfg"
+  }
+ ]
+}

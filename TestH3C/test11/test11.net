@@ -52,7 +52,7 @@ version = 5.5.0
     [[F1060 FW1]]
         device_id = 1
         bridge_mac = 94-e1-6b-79-01-00
-        slot0 = F1060 512
+        slot0 = F1060 1024
         GE_0/10 = SW0 GE_0/1
         GE_0/0 = NIC:Microsoft KM-TEST 环回适配器
         GE_0/1 = NIC:Microsoft KM-TEST 环回适配器 #2

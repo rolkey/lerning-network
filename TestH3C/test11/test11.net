@@ -18,7 +18,7 @@ version = 5.5.0
         GE_0/1 = SW2 GE_0/2
         symbol = PC
         x = -175.0
-        y = 401.0
+        y = 419.88888888888897
         z = 5.0
     [[S6850 SW1]]
         device_id = 3
@@ -26,13 +26,13 @@ version = 5.5.0
         slot0 = S5800 512
         GE_0/2 = PC_5 GE_0/1
         GE_0/1 = SW0 GE_0/3
-        x = -566.0
-        y = 215.0
+        x = -558.2222222222224
+        y = 213.88888888888886
         z = 5.0
     [[S5820V2-54QS-GE SW0]]
         device_id = 2
         bridge_mac = 94-e1-ad-12-02-00
-        slot0 = S5800 384
+        slot0 = S5800 1024
         GE_0/3 = SW1 GE_0/1
         GE_0/1 = FW1 GE_0/10
         GE_0/2 = NIC:Microsoft KM-TEST 环回适配器 #3
@@ -46,6 +46,7 @@ version = 5.5.0
         slot0 = S5800 512
         GE_0/2 = PC_6 GE_0/1
         GE_0/1 = SW0 GE_0/4
+        GE_0/3 = NIC:Microsoft KM-TEST 环回适配器 #7
         x = -176.0
         y = 207.0
         z = 5.0
@@ -62,6 +63,12 @@ version = 5.5.0
 [Non-vBox-DATA]
     m11 = 0.9
     m22 = 0.9
+    [[Cloud Host_4]]
+        symbol = Host
+        NIC:Microsoft KM-TEST 环回适配器 #7_0 = SW2 GE_0/3
+        x = 349.4444444444445
+        y = 202.7777777777778
+        z = 5.0
     [[Cloud Host_1]]
         symbol = Host
         NIC:Microsoft KM-TEST 环回适配器_0 = FW1 GE_0/0
@@ -81,111 +88,125 @@ version = 5.5.0
         y = -39.0
         z = 5.0
     [[NOTE 1]]
+        text = "NIC:Microsoft KM-TEST 环回适配器 #7"
+        interface = Host_4 NIC:Microsoft KM-TEST 环回适配器 #7
+        font = "Arial,10,-1,5,50,0,0,0,0,0"
+        x = -370.9680239964671
+        y = 26.599080303747172
+        z = 6.0
+    [[NOTE 2]]
         text = "GE_0/1"
         interface = FW1 GE_0/1
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 64.99995787005759
         y = 24.941944908751736
         z = 6.0
-    [[NOTE 2]]
+    [[NOTE 3]]
         text = "GE_0/0"
         interface = FW1 GE_0/0
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 25.404019793414534
         y = -37.0
         z = 6.0
-    [[NOTE 3]]
+    [[NOTE 4]]
         text = "GE_0/10"
         interface = FW1 GE_0/10
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 25.0
         y = 65.0
         z = 6.0
-    [[NOTE 4]]
+    [[NOTE 5]]
+        text = "GE_0/3"
+        interface = SW2 GE_0/3
+        font = "Arial,10,-1,5,50,0,0,0,0,0"
+        x = 64.96802399646708
+        y = 23.400919696252828
+        z = 6.0
+    [[NOTE 6]]
         text = "GE_0/1"
         interface = SW2 GE_0/1
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 0.1886981808697783
         y = -37.0
         z = 6.0
-    [[NOTE 5]]
+    [[NOTE 7]]
         text = "GE_0/2"
         interface = SW2 GE_0/2
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 25.206182827858186
         y = 64.99946860448892
         z = 6.0
-    [[NOTE 6]]
+    [[NOTE 8]]
         text = "GE_0/4"
         interface = SW0 GE_0/4
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 77.589079596908
         y = 57.486249390328695
         z = 6.0
-    [[NOTE 7]]
+    [[NOTE 9]]
         text = "GE_0/2"
         interface = SW0 GE_0/2
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 64.99797709890049
         y = 24.597721494694966
         z = 6.0
-    [[NOTE 8]]
+    [[NOTE 10]]
         text = "GE_0/1"
         interface = SW0 GE_0/1
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 25.0
         y = -37.0
         z = 6.0
-    [[NOTE 9]]
+    [[NOTE 11]]
         text = "GE_0/3"
         interface = SW0 GE_0/3
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = -98.46956389441954
         y = 48.2475624860667
         z = 6.0
-    [[NOTE 10]]
+    [[NOTE 12]]
         text = "GE_0/1"
         interface = SW1 GE_0/1
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 50.24734167219731
         y = -37.0
         z = 6.0
-    [[NOTE 11]]
+    [[NOTE 13]]
         text = "GE_0/2"
         interface = SW1 GE_0/2
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 25.19230546985534
         y = 64.9995377299071
         z = 6.0
-    [[NOTE 12]]
+    [[NOTE 14]]
         text = "GE_0/1"
         interface = PC_6 GE_0/1
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 23.824037935924288
         y = -37.0
         z = 6.0
-    [[NOTE 13]]
+    [[NOTE 15]]
         text = "GE_0/1"
         interface = PC_5 GE_0/1
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 30.629675174895965
         y = -37.0
         z = 6.0
-    [[NOTE 14]]
+    [[NOTE 16]]
         text = "NIC:Microsoft KM-TEST 环回适配器"
         interface = Host_1 NIC:Microsoft KM-TEST 环回适配器
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = 26.912703142102657
         y = 64.95424341281148
         z = 6.0
-    [[NOTE 15]]
+    [[NOTE 17]]
         text = "NIC:Microsoft KM-TEST 环回适配器 #2"
         interface = Host_2 NIC:Microsoft KM-TEST 环回适配器 #2
         font = "Arial,10,-1,5,50,0,0,0,0,0"
         x = -370.97905481482485
         y = 26.294285947242543
         z = 6.0
-    [[NOTE 16]]
+    [[NOTE 18]]
         text = "NIC:Microsoft KM-TEST 环回适配器 #3"
         interface = Host_3 NIC:Microsoft KM-TEST 环回适配器 #3
         font = "Arial,10,-1,5,50,0,0,0,0,0"

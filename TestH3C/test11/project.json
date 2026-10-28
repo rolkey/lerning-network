@@ -69,6 +69,13 @@
    "resourceModel": "F1060",
    "resourceVersion": "CMW7.1.064-A7164",
    "configPath": "DeviceConfig\\FW1.cfg"
+  },
+  {
+   "resourceName": "Host_4",
+   "resourceCategory": "终端",
+   "resourceModel": "Host",
+   "resourceVersion": "",
+   "configPath": ""
   }
  ]
 }

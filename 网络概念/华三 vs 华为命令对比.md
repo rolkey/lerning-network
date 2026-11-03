@@ -21,6 +21,7 @@
 | **ACL 与 NAT (安全/防火墙)** |  |  |  |
 | 创建基本 ACL | `acl basic 2000` 或 `acl number 2000` | `acl 2000` 或 `acl number 2000` | H3C 明确区分 basic / advanced |
 | 创建高级 ACL | `acl advanced 3000` | `acl 3000` | H3C 新版 Comware v7 推荐写明类型 |
+| ACL 端口应用  | `packet-filter 3000 inbound` | `traffic-filter inbound acl 3000` | 均在出口接口配置 |
 | NAT 动态地址转换应用 | `nat outbound 2000` | `nat outbound 2000` | 均在出口接口配置 |
 | 规则匹配默认顺序 | auto（自动/深度优先） | config（配置顺序/自上而下） | H3C 支持 auto/config，华为默认为 config |
 | **运维、监控与抓包** |  |  |  |

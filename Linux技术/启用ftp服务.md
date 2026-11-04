@@ -127,11 +127,14 @@ ufw allow 40000:50000/tcp
 | 500 OOPS: refusing to run with writable root | 家目录可写但未允许 | 加 allow_writeable_chroot=YES |
 | 登录后无法上传 | write_enable 未开 | 设 write_enable=YES |
 | 卡在"读取目录列表" | 被动模式端口未放行 | 配置 pasv 端口并放行防火墙 |
-```
 
-## 三、几个值得记住的要点
+
+## 十一、几个值得记住的要点
 
 1. **`pam_shells.so` 对 nologin 有硬编码拒绝逻辑**，不看你有没有把 nologin 加进 `/etc/shells`。
 2. **改完 PAM 后要 stop + start**，`restart` 不一定能让 PAM 会话重新初始化。
 3. **Debian 12 没有 `/var/log/auth.log`**，用 `journalctl` 或 `/var/log/vsftpd.log`。
 4. **`allow_writeable_chroot=YES` 是必须的**，否则 chroot 到家目录且可写时会报 500 OOPS。
+
+
+## 十二、虚拟机ftpU，密码：Ftpu@1234

@@ -1,0 +1,218 @@
+Internet路由器
+system-view
+interface GE0/0/1
+ ip address 100.1.1.1 255.255.255.252
+#
+interface GE0/0/2
+ ip address 200.1.1.1 255.255.255.252
+#
+interface LoopBack0
+ ip address 114.114.114.114 255.255.255.255
+#
+quit
+save
+y
+
+
+防火墙1：
+system-view
+sysname FW1
+acl number 3000
+ rule 5 permit ip source 192.168.10.0 0.0.0.255 destination 192.168.20.0 0.0.0.255
+quit
+interface GE0/0/1
+ ip address 192.168.10.1 255.255.255.0
+ service-manage https permit
+ service-manage ping permit
+ service-manage snmp permit
+quit
+interface GE0/0/9
+ ip address 100.1.1.2 255.255.255.252
+ ipsec policy FW1 
+quit
+ip route-static 0.0.0.0 0.0.0.0 100.1.1.1
+
+ike proposal 10
+ encryption-algorithm aes-gcm-256 
+ dh group14 
+ authentication-algorithm sha2-256 
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256 
+ prf hmac-sha2-256 
+quit
+ipsec proposal FW1
+ esp authentication-algorithm sha2-256 
+ esp encryption-algorithm aes-256-gcm-128 
+quit
+ike peer FW1
+ pre-shared-key Huawei@123
+ ike-proposal 10
+ remote-address 200.1.1.2 
+quit
+ipsec policy FW1 10 isakmp
+ security acl 3000
+ ike-peer FW1
+ proposal FW1
+quit
+firewall zone trust
+ add interface GE0/0/1
+quit
+firewall zone untrust
+ add interface GE0/0/9
+quit
+
+ip service-set vpn1 type object
+ service 0 protocol udp destination-port 500
+quit
+security-policy
+ rule name Ipsecvpn1
+  source-zone local
+  destination-zone untrust
+  source-address 100.1.1.2 mask 255.255.255.255
+  destination-address 200.1.1.2 mask 255.255.255.255
+  service vpn1
+  action permit
+ rule name Ipsecvpn2
+  source-zone untrust
+  destination-zone local
+  source-address 200.1.1.2 mask 255.255.255.255
+  destination-address 100.1.1.2 mask 255.255.255.255
+  service vpn1
+  action permit
+ rule name Ipsec_user1
+  source-zone trust
+  destination-zone untrust
+  source-address 192.168.10.0 mask 255.255.255.0
+  destination-address 192.168.20.0 mask 255.255.255.0
+  action permit
+ rule name Ipsec_user2
+  source-zone untrust
+  destination-zone trust
+  source-address 192.168.20.0 mask 255.255.255.0
+  destination-address 192.168.10.0 mask 255.255.255.0
+  action permit
+ rule name Internet
+  source-zone trust
+  destination-zone untrust
+  source-address 192.168.10.0 mask 255.255.255.0
+  action permit
+quit
+quit
+nat-policy
+ rule name no_nat
+  source-zone trust
+  destination-zone untrust
+  source-address 192.168.10.0 mask 255.255.255.0
+  destination-address 192.168.20.0 mask 255.255.255.0
+  action no-nat
+ rule name Internet
+  source-zone trust
+  destination-zone untrust
+  source-address 192.168.10.0 mask 255.255.255.0
+  action source-nat easy-ip
+quit
+quit
+
+
+
+FW2:
+system-view
+sysname FW2
+acl number 3000
+ rule 5 permit ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255
+quit
+
+interface GE0/0/1
+ ip address 192.168.20.1 255.255.255.0
+ service-manage https permit
+ service-manage ping permit
+ service-manage snmp permit
+quit
+
+interface GE0/0/9
+ ip address 200.1.1.2 255.255.255.252
+ ipsec policy FW2 
+quit
+
+ip route-static 0.0.0.0 0.0.0.0 200.1.1.1
+
+ike proposal 10
+ encryption-algorithm aes-gcm-256 
+ dh group14 
+ authentication-algorithm sha2-256 
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256 
+ prf hmac-sha2-256 
+quit
+ipsec proposal FW2
+ esp authentication-algorithm sha2-256 
+ esp encryption-algorithm aes-256-gcm-128 
+quit
+ike peer FW2
+ pre-shared-key Huawei@123
+ ike-proposal 10
+ remote-address 100.1.1.2 
+quit
+ipsec policy FW2 10 isakmp
+ security acl 3000
+ ike-peer FW2
+ proposal FW2
+quit
+firewall zone trust
+ add interface GE0/0/1
+quit
+firewall zone untrust
+ add interface GE0/0/9
+quit
+ip service-set vpn1 type object
+ service 0 protocol udp destination-port 500
+quit
+security-policy
+ rule name Internet
+  source-zone trust
+  destination-zone untrust
+  source-address 192.168.20.0 mask 255.255.255.0
+  action permit
+ rule name Ipsecvpn1
+  source-zone local
+  destination-zone untrust
+  source-address 200.1.1.2 mask 255.255.255.255
+  destination-address 100.1.1.2 mask 255.255.255.255
+  service vpn1
+  action permit
+ rule name Ipsecvpn2
+  source-zone untrust
+  destination-zone local
+  source-address 100.1.1.2 mask 255.255.255.255
+  destination-address 200.1.1.2 mask 255.255.255.255
+  service vpn1
+  action permit
+ rule name Ipsec_user1
+  source-zone trust
+  destination-zone untrust
+  source-address 192.168.20.0 mask 255.255.255.0
+  destination-address 192.168.10.0 mask 255.255.255.0
+  action permit 
+ rule name Ipsec_user2
+  source-zone untrust
+  destination-zone trust
+  source-address 192.168.10.0 mask 255.255.255.0
+  destination-address 192.168.20.0 mask 255.255.255.0
+  action permit
+quit
+quit
+
+nat-policy
+ rule name no_nat
+  source-zone trust
+  destination-zone untrust
+  source-address 192.168.20.0 mask 255.255.255.0
+  destination-address 192.168.10.0 mask 255.255.255.0
+  action no-nat
+ rule name Internet
+  source-zone trust
+  destination-zone untrust
+  source-address 192.168.20.0 mask 255.255.255.0
+  action source-nat easy-ip
+quit
+quit

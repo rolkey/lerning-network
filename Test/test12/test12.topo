@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UNICODE" ?>
 <topo version="1.3.00.100">
     <devices>
-        <dev id="1BE555BE-7B59-4d70-8259-69C58E647D56" name="AR1" poe="0" model="AR2220" settings="" system_mac="00-E0-FC-C2-74-2C" com_port="2002" bootmode="0" cx="270.000000" cy="42.000000" edit_left="303" edit_top="96">
-            <slot number="slot17" isMainBoard="1">
-                <interface sztype="Ethernet" interfacename="GE" count="1" />
-                <interface sztype="Ethernet" interfacename="GE" count="2" />
-            </slot>
-        </dev>
-        <dev id="BA0F8BCD-22B7-4c9a-ACB1-E3B7E23485CA" name="PC2" poe="0" model="PC" settings=" -simpc_hostname PC2  -simpc_ip 192.168.20.2  -simpc_mask 255.255.255.0  -simpc_gateway 192.168.20.1  -simpc_mac 54-89-98-37-6C-E0  -simpc_mc_dstip 0.0.0.0  -simpc_mc_dstmac 00-00-00-00-00-00  -simpc_dns1 0.0.0.0  -simpc_dns2 0.0.0.0  -simpc_ipv6 ::  -simpc_prefix 128  -simpc_gatewayv6 ::  -simpc_dhcp_state 0  -simpc_dhcpv6_state 0  -simpc_dns_auto_state 0  -simpc_igmp_version 1  -simpc_group_ip_start 0.0.0.0  -simpc_src_ip_start 0.0.0.0  -simpc_group_num 0  -simpc_group_step 0  -simpc_src_num 0  -simpc_src_step 0  -simpc_type MODE_IS_INCLUDE " system_mac="54-89-98-37-6C-E0" com_port="0" bootmode="0" cx="429.000000" cy="422.000000" edit_left="456" edit_top="476">
-            <slot number="slot17" isMainBoard="1">
-                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
-            </slot>
-        </dev>
         <dev id="2368ACA8-4CC7-48a3-A56B-1036D42EC410" name="Cloud2" poe="0" model="Cloud" settings="" system_mac="" com_port="0" bootmode="0" cx="684.500000" cy="215.500000" edit_left="727" edit_top="300">
             <slot number="slot17" isMainBoard="1">
                 <interface sztype="Ethernet" interfacename="Ethernet" count="0" />
@@ -19,23 +8,6 @@
                 <interface sztype="Serial" interfacename="Serial" count="0" />
                 <interfaceMap sztype="Ethernet" interfacename="GE" displayNo="1" remoteDisplayNo="2" adapterUid="" isOpen="0" udpPort="0" peerIPAdd="0.0.0.0" peerIP="0" peerPort="0" />
                 <interfaceMap sztype="Ethernet" interfacename="GE" displayNo="2" remoteDisplayNo="1" adapterUid="\Device\NPF_{61634B00-3B1B-4530-B4DE-A576C2A68A4E}" isOpen="1" udpPort="0" peerIPAdd="0.0.0.0" peerIP="0" peerPort="0" />
-            </slot>
-        </dev>
-        <dev id="5DEC6F47-0C65-4ba1-90AB-0E072D9BE316" name="FW2" poe="0" model="USG6000V" settings="" system_mac="00-E0-FC-84-5E-2D" com_port="2001" bootmode="0" cx="430.000000" cy="232.000000" edit_left="440" edit_top="281">
-            <slot id="1">
-                <interface category="Ethernet" type="GE" slotIndex="0" cardIndex="0" interfaceIndex="0" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="0" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="1" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="2" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="3" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="4" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="5" />
-                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="6" />
-            </slot>
-        </dev>
-        <dev id="20D0396C-211F-4742-8CCF-70F503558408" name="PC1" poe="0" model="PC" settings=" -simpc_hostname PC1  -simpc_ip 192.168.10.2  -simpc_mask 255.255.255.0  -simpc_gateway 192.168.10.1  -simpc_mac 54-89-98-47-1E-7C  -simpc_mc_dstip 0.0.0.0  -simpc_mc_dstmac 00-00-00-00-00-00  -simpc_dns1 0.0.0.0  -simpc_dns2 0.0.0.0  -simpc_ipv6 ::  -simpc_prefix 128  -simpc_gatewayv6 ::  -simpc_dhcp_state 0  -simpc_dhcpv6_state 0  -simpc_dns_auto_state 0  -simpc_igmp_version 1  -simpc_group_ip_start 0.0.0.0  -simpc_src_ip_start 0.0.0.0  -simpc_group_num 0  -simpc_group_step 0  -simpc_src_num 0  -simpc_src_step 0  -simpc_type MODE_IS_INCLUDE " system_mac="54-89-98-47-1E-7C" com_port="0" bootmode="0" cx="95.000000" cy="417.000000" edit_left="122" edit_top="471">
-            <slot number="slot17" isMainBoard="1">
-                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
             </slot>
         </dev>
         <dev id="8E78BE8F-5189-4636-91D8-467E2BE7FDA1" name="FW1" poe="0" model="USG6000V" settings="" system_mac="00-E0-FC-64-06-8E" com_port="2000" bootmode="0" cx="100.000000" cy="233.000000" edit_left="105" edit_top="282">
@@ -50,6 +22,34 @@
                 <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="6" />
             </slot>
         </dev>
+        <dev id="5DEC6F47-0C65-4ba1-90AB-0E072D9BE316" name="FW2" poe="0" model="USG6000V" settings="" system_mac="00-E0-FC-84-5E-2D" com_port="2001" bootmode="0" cx="430.000000" cy="232.000000" edit_left="440" edit_top="281">
+            <slot id="1">
+                <interface category="Ethernet" type="GE" slotIndex="0" cardIndex="0" interfaceIndex="0" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="0" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="1" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="2" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="3" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="4" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="5" />
+                <interface category="Ethernet" type="GE" slotIndex="1" cardIndex="0" interfaceIndex="6" />
+            </slot>
+        </dev>
+        <dev id="1BE555BE-7B59-4d70-8259-69C58E647D56" name="AR1" poe="0" model="AR2220" settings="" system_mac="00-E0-FC-C2-74-2C" com_port="2002" bootmode="0" cx="270.000000" cy="42.000000" edit_left="297" edit_top="94">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="GE" count="1" />
+                <interface sztype="Ethernet" interfacename="GE" count="2" />
+            </slot>
+        </dev>
+        <dev id="20D0396C-211F-4742-8CCF-70F503558408" name="PC1" poe="0" model="PC" settings=" -simpc_hostname pc1  -simpc_ip 192.168.10.2  -simpc_mask 255.255.255.0  -simpc_gateway 192.168.10.1  -simpc_mac 54-89-98-47-1E-7C  -simpc_mc_dstip 0.0.0.0  -simpc_mc_dstmac 00-00-00-00-00-00  -simpc_dns1 0.0.0.0  -simpc_dns2 0.0.0.0  -simpc_ipv6 ::  -simpc_prefix 128  -simpc_gatewayv6 ::  -simpc_dhcp_state 0  -simpc_dhcpv6_state 0  -simpc_dns_auto_state 0  -simpc_igmp_version 1  -simpc_group_ip_start 0.0.0.0  -simpc_src_ip_start 0.0.0.0  -simpc_group_num 0  -simpc_group_step 0  -simpc_src_num 0  -simpc_src_step 0  -simpc_type MODE_IS_INCLUDE " system_mac="54-89-98-47-1E-7C" com_port="0" bootmode="0" cx="95.000000" cy="417.000000" edit_left="122" edit_top="471">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
+            </slot>
+        </dev>
+        <dev id="BA0F8BCD-22B7-4c9a-ACB1-E3B7E23485CA" name="PC2" poe="0" model="PC" settings=" -simpc_hostname pc2  -simpc_ip 192.168.20.2  -simpc_mask 255.255.255.0  -simpc_gateway 192.168.20.1  -simpc_mac 54-89-98-37-6C-E0  -simpc_mc_dstip 0.0.0.0  -simpc_mc_dstmac 00-00-00-00-00-00  -simpc_dns1 0.0.0.0  -simpc_dns2 0.0.0.0  -simpc_ipv6 ::  -simpc_prefix 128  -simpc_gatewayv6 ::  -simpc_dhcp_state 0  -simpc_dhcpv6_state 0  -simpc_dns_auto_state 0  -simpc_igmp_version 1  -simpc_group_ip_start 0.0.0.0  -simpc_src_ip_start 0.0.0.0  -simpc_group_num 0  -simpc_group_step 0  -simpc_src_num 0  -simpc_src_step 0  -simpc_type MODE_IS_INCLUDE " system_mac="54-89-98-37-6C-E0" com_port="0" bootmode="0" cx="429.000000" cy="422.000000" edit_left="456" edit_top="476">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
+            </slot>
+        </dev>
     </devices>
     <lines>
         <line srcDeviceID="8E78BE8F-5189-4636-91D8-467E2BE7FDA1" destDeviceID="20D0396C-211F-4742-8CCF-70F503558408">
@@ -62,7 +62,7 @@
             <interfacePair lineName="Copper" srcIndex="1" srcBoundRectIsMoved="1" srcBoundRect_X="268.289307" srcBoundRect_Y="101.257309" srcOffset_X="-56.000000" srcOffset_Y="-11.000000" tarIndex="2" tarBoundRectIsMoved="0" tarBoundRect_X="155.710693" tarBoundRect_Y="227.742691" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
         </line>
         <line srcDeviceID="1BE555BE-7B59-4d70-8259-69C58E647D56" destDeviceID="5DEC6F47-0C65-4ba1-90AB-0E072D9BE316">
-            <interfacePair lineName="Copper" srcIndex="2" srcBoundRectIsMoved="1" srcBoundRect_X="324.816193" srcBoundRect_Y="102.031746" srcOffset_X="15.000000" srcOffset_Y="-11.000000" tarIndex="2" tarBoundRectIsMoved="1" tarBoundRect_X="429.183807" tarBoundRect_Y="225.968246" tarOffset_X="1.000000" tarOffset_Y="-24.000000" />
+            <interfacePair lineName="Copper" srcIndex="2" srcBoundRectIsMoved="1" srcBoundRect_X="324.816193" srcBoundRect_Y="102.031746" srcOffset_X="10.000000" srcOffset_Y="-11.000000" tarIndex="2" tarBoundRectIsMoved="1" tarBoundRect_X="429.183807" tarBoundRect_Y="225.968246" tarOffset_X="-51.000000" tarOffset_Y="-6.000000" />
         </line>
         <line srcDeviceID="5DEC6F47-0C65-4ba1-90AB-0E072D9BE316" destDeviceID="2368ACA8-4CC7-48a3-A56B-1036D42EC410">
             <interfacePair lineName="Copper" srcIndex="3" srcBoundRectIsMoved="0" srcBoundRect_X="500.183472" srcBoundRect_Y="258.840057" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="0" tarBoundRect_X="662.603455" tarBoundRect_Y="258.238495" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
@@ -70,7 +70,9 @@
     </lines>
     <shapes />
     <txttips>
-        <txttip left="476" top="53" right="608" bottom="85" content="G0.0.1: 10.1.1.1&#x0D;&#x0A;G0/0/2: 10.2.1.1" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
+        <txttip left="334" top="30" right="459" bottom="78" content="AR1&#x0D;&#x0A;G0.0.1: 10.1.1.1&#x0D;&#x0A;G0/0/2: 10.2.1.1" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
         <txttip left="196" top="246" right="351" bottom="294" content="1-1024是固定端口&#x0D;&#x0A;1025-65535是随机端口&#x0D;&#x0A;" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
+        <txttip left="8" top="171" right="155" bottom="219" content="FW1&#x0D;&#x0A;G1/0/1:10.1.1.2&#x0D;&#x0A;G1/0/0:192.168.10.1" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
+        <txttip left="446" top="182" right="593" bottom="230" content="FW2&#x0D;&#x0A;G1/0/1:10.2.1.2&#x0D;&#x0A;G1/0/0:192.168.20.1" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
     </txttips>
 </topo>

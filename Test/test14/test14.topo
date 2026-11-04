@@ -84,10 +84,10 @@
     </lines>
     <shapes />
     <txttips>
-        <txttip left="94" top="142" right="287" bottom="268" content="FW1&#x0D;&#x0A;G1/0/0:10.1.23.1/24&#x0D;&#x0A;G1/0/1:192.168.200.1/24&#x0D;&#x0A;&#x0D;&#x0A;SSH&#x0D;&#x0A;USER:rAdmin PW:Admin@1234&#x0D;&#x0A;&#x0D;&#x0A;HTTPS使用默认用户admin" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
+        <txttip left="80" top="135" right="273" bottom="261" content="FW1&#x0D;&#x0A;G1/0/0:10.1.23.1/24&#x0D;&#x0A;G1/0/1:192.168.200.1/24&#x0D;&#x0A;&#x0D;&#x0A;SSH&#x0D;&#x0A;USER:rAdmin PW:Admin@1234&#x0D;&#x0A;&#x0D;&#x0A;HTTPS使用默认用户admin" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
         <txttip left="405" top="296" right="628" bottom="406" content="SW1（三层交换机）&#x0D;&#x0A;vlan100 G0/0/3:10.2.1.2/24&#x0D;&#x0A;&#x0D;&#x0A;vlan200管理：192.168.100.1&#x0D;&#x0A;&#x0D;&#x0A;vlan 10工作区A: 192.168.10.1&#x0D;&#x0A;vlan 20工作区B: 192.168.20.1" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
         <txttip left="74" top="470" right="244" bottom="518" content="SW2&#x0D;&#x0A;VLAN200: 192.168.100.2&#x0D;&#x0A;VLAN10" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
-        <txttip left="444" top="435" right="622" bottom="483" content="SW3&#x0D;&#x0A;VLAN200：192.168.100.3&#x0D;&#x0A;VLAN20" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
+        <txttip left="419" top="454" right="597" bottom="502" content="SW3&#x0D;&#x0A;VLAN200：192.168.100.3&#x0D;&#x0A;VLAN20" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
         <txttip left="376" top="208" right="803" bottom="256" content="注意：加上回程路由才能让PC ping通防火墙&#x0D;&#x0A;&#x0D;&#x0A;ip route-static 192.168.10.0 255.255.255.0 192.168.200.2" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
     </txttips>
 </topo>
